@@ -1,0 +1,11 @@
+Model Information:
+* title:	Barrel Minecraft
+* source:	https://sketchfab.com/3d-models/barrel-minecraft-e31d070929c846d2a2696c15fd013307
+* author:	JDanielHE (https://sketchfab.com/JDanielHE)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Barrel Minecraft" (https://sketchfab.com/3d-models/barrel-minecraft-e31d070929c846d2a2696c15fd013307) by JDanielHE (https://sketchfab.com/JDanielHE) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
