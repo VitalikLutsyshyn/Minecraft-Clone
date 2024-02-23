@@ -1,15 +1,43 @@
 from ursina import*
 from ursina.prefabs.first_person_controller import FirstPersonController
 from ursina.prefabs.sky import Sky
+import os
+
+
+BASE_DIR = os.getcwd() #повертає адрежу точного файлу
+
 app = Ursina()#cтвореня гри
 
+def get_image_list(path):
+    image_names = os.listdir(path)
+    image_list = []
+    for image in image_names:
+        image_list.append(load_texture("assets/textures_block" + os.sep + image))
+    
+    return image_list
+
+
+
+textures_list = get_image_list(BASE_DIR + "/assets/textures_block")
+# Функція, яка перевіряє наявність об'єкта в певній точці
+def check_object(x, y, z):
+    hit_info = raycast(Vec3(x, y, z), direction=Vec3(0, -1, 0), distance=1) 
+    if hit_info.hit:
+        return True 
+    else:
+        return False
+
+print(textures_list)
+
 class Block(Button):
+    number = 1
+
     def __init__(self,pos,**kwargs):
         super().__init__(parent=scene,
-            model="assets\minecraft-grass-block\source\Minecraft_Grass_Block_OBJ\Grass_Block",
-               texture="assets\minecraft-grass-block\source\Minecraft_Grass_Block_OBJ\Grass_Block_TEX.png",
+            model="cube",
+               texture= textures_list[Block.number],
                collider = "box",
-               scale=0.5,
+               scale=1,
             position=pos,
             origin_y=0,
             color = color.color(0,0,random.uniform(0.9,1.0)),
@@ -20,8 +48,13 @@ class Block(Button):
             if key == "left mouse down":
                 destroy(self)
             elif key == "right mouse down":
-                Block(self.position + mouse.normal)
+                if check_object(*(self.position + mouse.normal)):
+                    Block(self.position + mouse.normal)
 
+        for i in range(10):
+            if key == str(i):
+                Block.number = i
+        
 
 
 
