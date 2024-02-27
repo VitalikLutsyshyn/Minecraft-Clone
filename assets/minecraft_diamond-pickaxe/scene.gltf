@@ -3,24 +3,24 @@
     {
       "bufferView": 2,
       "componentType": 5126,
-      "count": 2400,
+      "count": 458,
       "max": [
-        0.800000011920929,
-        0.800000011920929,
-        1.600000023841858
+        13.0,
+        13.0,
+        1.0
       ],
       "min": [
-        -0.800000011920929,
-        -0.800000011920929,
-        0.0
+        -13.0,
+        -13.0,
+        -1.0
       ],
       "type": "VEC3"
     },
     {
       "bufferView": 2,
-      "byteOffset": 28800,
+      "byteOffset": 5496,
       "componentType": 5126,
-      "count": 2400,
+      "count": 458,
       "max": [
         1.0,
         1.0,
@@ -36,53 +36,53 @@
     {
       "bufferView": 1,
       "componentType": 5126,
-      "count": 2400,
+      "count": 458,
       "max": [
-        0.03710940107703209,
-        0.5
+        1.0,
+        1.0
       ],
       "min": [
-        0.00585938012227416,
-        0.5
+        0.0,
+        0.0
       ],
       "type": "VEC2"
     },
     {
       "bufferView": 0,
       "componentType": 5125,
-      "count": 5076,
+      "count": 1248,
       "type": "SCALAR"
     }
   ],
   "asset": {
     "extras": {
-      "author": "JDanielHE (https://sketchfab.com/JDanielHE)",
+      "author": "Blender3D (https://sketchfab.com/Blender3D)",
       "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
-      "source": "https://sketchfab.com/3d-models/pumkin-minecraft-6bd8382ddfc942b2970333a525ee0b06",
-      "title": "Pumkin Minecraft"
+      "source": "https://sketchfab.com/3d-models/minecraft-diamond-pickaxe-b1bc7d6a3db246d5b47449ae2b2706fd",
+      "title": "Minecraft Diamond-Pickaxe"
     },
-    "generator": "Sketchfab-12.67.0",
+    "generator": "Sketchfab-12.66.0",
     "version": "2.0"
   },
   "bufferViews": [
     {
       "buffer": 0,
-      "byteLength": 20304,
+      "byteLength": 4992,
       "name": "floatBufferViews",
       "target": 34963
     },
     {
       "buffer": 0,
-      "byteLength": 19200,
-      "byteOffset": 20304,
+      "byteLength": 3664,
+      "byteOffset": 4992,
       "byteStride": 8,
       "name": "floatBufferViews",
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 57600,
-      "byteOffset": 39504,
+      "byteLength": 10992,
+      "byteOffset": 8656,
       "byteStride": 12,
       "name": "floatBufferViews",
       "target": 34962
@@ -90,25 +90,25 @@
   ],
   "buffers": [
     {
-      "byteLength": 97104,
+      "byteLength": 19648,
       "uri": "scene.bin"
     }
   ],
   "images": [
     {
-      "uri": "textures/palette_baseColor.png"
+      "uri": "textures/Material.009_baseColor.png"
     }
   ],
   "materials": [
     {
       "doubleSided": true,
-      "name": "palette",
+      "name": "Material.009",
       "pbrMetallicRoughness": {
         "baseColorTexture": {
           "index": 0
         },
-        "metallicFactor": 0.01434105939756158,
-        "roughnessFactor": 0.19020167729640403
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.16121211199999996
       }
     }
   ],
@@ -158,7 +158,7 @@
       "children": [
         2
       ],
-      "name": "Pumpkin.obj.cleaner.materialmerger.gles"
+      "name": "Diamond-Pickaxe.obj.cleaner.materialmerger.gles"
     },
     {
       "mesh": 0,
