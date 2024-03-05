@@ -69,7 +69,7 @@ class Block(Button):
         else:
             return True
     def input(self,key):
-        if self.hovered:
+        if self.hovered: 
             if key == "left mouse down":
                 axe.move()
                 destroy(self)
