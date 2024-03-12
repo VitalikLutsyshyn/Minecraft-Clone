@@ -36,6 +36,7 @@ class Pickaxe(Entity):
 
 
 class Tree(Entity):
+    map = []
     def __init__(self,pos,scale=3, **kwargs):
         super().__init__(parent=scene,
                          model="assets/minecraft_tree/scene",
@@ -45,11 +46,11 @@ class Tree(Entity):
                          shader = basic_lighting_shader,
 
                            **kwargs)
-
+        Tree.map.append(self)
 
 class Block(Button):
     number = 1
-
+    map = []
     def __init__(self,pos,**kwargs):
         super().__init__(parent=scene,
             model="cube",
@@ -62,21 +63,28 @@ class Block(Button):
             highlight_color = color.rgb(100,49,200),
             shader = basic_lighting_shader,
             **kwargs)
+        
+        self.id = Block.number
+
     def check_object(self,x, y, z):
         hit_info = raycast(Vec3(x, y, z), direction=Vec3(0, 0, 0), distance=0) 
         if hit_info.hit:
             return False
         else:
             return True
+        
     def input(self,key):
         if self.hovered: 
             if key == "left mouse down":
                 axe.move()
                 destroy(self)
+                self.map.remove(self)
+
             elif key == "right mouse down":
                 if self.check_object(*(self.position + mouse.normal)):
                     axe.move()
-                    Block(self.position + mouse.normal)
+                    block = Block(self.position + mouse.normal)
+                    Block.map.append(block)
             else:
                 axe.stand()
         for i in range(10):
