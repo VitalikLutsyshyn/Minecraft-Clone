@@ -24,10 +24,12 @@ class Pickaxe(Entity):
             rotation = Vec3(-60,85,-71),
             shader = basic_lighting_shader  
         )
-    
+        self.build_sound = Audio("music/breaking_block.mp3",autoplay = False,volume = 0.3)
+
     def move(self):
         self.position =Vec2(0.5,-0.3)
         self.rotation =Vec3(-60,85,-71)
+        self.build_sound.play()
 
     def stand(self):
         self.position = Vec2(0.5,-0.4)
@@ -79,6 +81,7 @@ class Block(Button):
                 axe.move()
                 destroy(self)
                 self.map.remove(self)
+                
 
             elif key == "right mouse down":
                 if self.check_object(*(self.position + mouse.normal)):

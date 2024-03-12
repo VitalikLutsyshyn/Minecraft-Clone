@@ -21,6 +21,7 @@ class Controller(Entity):
         self.sky = Sky()
         self.player.y = 100
         self.music = Audio("music/fon_music.mp3",loop = True,volume = 0.1)
+        
         self.music.play()
         window.fullscreen = True
         pivot = Entity()
