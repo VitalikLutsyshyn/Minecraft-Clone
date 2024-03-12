@@ -2,6 +2,7 @@ from ursina import*
 from ursina.shaders import lit_with_shadows_shader, basic_lighting_shader
 from settings import*
 import os
+from ursina.prefabs.first_person_controller import FirstPersonController
 
 
 def get_image_list(path):
@@ -93,5 +94,26 @@ class Block(Button):
         for i in range(10):
             if key == str(i):
                 Block.number = i
+
+class Player(FirstPersonController):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.step_sound = Audio("music/step.mp3",autoplay=False,loop = True,volume = 0.07)
+
+
+    def update(self):
+        super().update()
+        if held_keys["w"] or held_keys["s"] or held_keys["a"] or held_keys["d"]:
+            if not self.step_sound.playing and self.grounded:
+                self.step_sound.play()
+        else:   
+            if self.step_sound.playing:
+                self.step_sound.stop()
+
+       
+
+
+
+
 
 axe = Pickaxe()

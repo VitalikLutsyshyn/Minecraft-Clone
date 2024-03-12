@@ -1,6 +1,5 @@
 #знайти звуки mp3
 from ursina import*
-from ursina.prefabs.first_person_controller import FirstPersonController
 from ursina.prefabs.sky import Sky
 from ursina.shaders import lit_with_shadows_shader, basic_lighting_shader
 from perlin_noise import PerlinNoise
@@ -11,22 +10,27 @@ import pickle
 
 app = Ursina()#cтвореня гри
 from settings import*
-from models import Tree,Block,Pickaxe
+from models import Tree,Block,Pickaxe,Player
 
 
 class Controller(Entity):
     def __init__(self):
         super().__init__()
-        self.player = FirstPersonController()
+        self.player = Player()
         self.sky = Sky()
         self.player.y = 100
         self.music = Audio("music/fon_music.mp3",loop = True,volume = 0.1)
-        
+
         self.music.play()
         window.fullscreen = True
         pivot = Entity()
         DirectionalLight(parent=pivot, y=2, z=3, shadows=True,rotation = (45,-45,45))
 
+    def update(self):
+         if self.player.y <  - 30:
+            self.player.y = 100
+            self.load_game()
+    
     def clear_map(self):
         for block in Block.map:
             destroy(block)
