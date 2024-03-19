@@ -1,0 +1,11 @@
+Model Information:
+* title:	Poulet minecraft
+* source:	https://sketchfab.com/3d-models/poulet-minecraft-863ebb077a564b62b5b59cbfd01fcb43
+* author:	kiritouJert (https://sketchfab.com/Thekiritou.Fr)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Poulet minecraft" (https://sketchfab.com/3d-models/poulet-minecraft-863ebb077a564b62b5b59cbfd01fcb43) by kiritouJert (https://sketchfab.com/Thekiritou.Fr) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
