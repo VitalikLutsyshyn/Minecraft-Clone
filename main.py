@@ -7,15 +7,16 @@ import random
 import os
 import math
 import pickle     
-
 app = Ursina()#cтвореня гри
 from settings import*
-from models import Tree,Block,Pickaxe,Player
+from models import Tree,Block,Pickaxe,Player,axe
+from ui import Menu
 
 
 class Controller(Entity):
     def __init__(self):
         super().__init__()
+        self.start = False
         self.player = Player()
         self.sky = Sky()
         self.player.y = 100
@@ -25,6 +26,20 @@ class Controller(Entity):
         window.fullscreen = True
         pivot = Entity()
         DirectionalLight(parent=pivot, y=2, z=3, shadows=True,rotation = (45,-45,45))
+        self.menu = Menu(self)
+        self.toggle_menu()
+        mouse.locked = False
+        mouse.visible = True
+    
+    def toggle_menu(self):
+        application.paused = not application.paused
+        self.menu.enabled =   application.paused
+        self.menu.visible =  self.menu.visible
+        mouse.locked = not mouse.locked
+        mouse.visible = not mouse.visible
+        axe.enabled = not axe.enabled
+
+    
 
     def update(self):
          if self.player.y <  - 30:
@@ -43,6 +58,8 @@ class Controller(Entity):
 
 
     def new_game(self):
+        self.start = True
+        self.menu.save_btn.enabled =True
         self.clear_map()
         noise = PerlinNoise(octaves=4,seed=random.randint(100,10000))
         for x in range(-MAP_SIZE,MAP_SIZE):
@@ -55,21 +72,26 @@ class Controller(Entity):
                 rand_num = random.randint(0,100)
                 if rand_num == 15:
                     tree1 = Tree((x,height+1,z),scale = random.randint(4,7))
+        self.toggle_menu()
 
-    def save_game(self):    
-        with open("save.dat","wb") as file:
-            pickle.dump(self.player.position,file)
-            pickle.dump(len(Block.map),file)
-            for block in Block.map:
-                pickle.dump(block.position,file)
-                pickle.dump(block.id,file)
+    def save_game(self): 
+        if self.start:   
+            with open("save.dat","wb") as file:
+                pickle.dump(self.player.position,file)
+                pickle.dump(len(Block.map),file)
+                for block in Block.map:
+                    pickle.dump(block.position,file)
+                    pickle.dump(block.id,file)
 
-            pickle.dump(len(Tree.map),file)
-            for tree in Tree.map:
-                pickle.dump(tree.position,file)
-                pickle.dump(tree.scale,file)
+                pickle.dump(len(Tree.map),file)
+                for tree in Tree.map:
+                    pickle.dump(tree.position,file)
+                    pickle.dump(tree.scale,file)
+            self.toggle_menu()
 
     def load_game(self):
+        self.start = True
+        self.menu.save_btn.enabled =True
         self.clear_map()
         try:
             with open("save.dat","rb") as file:
@@ -87,6 +109,7 @@ class Controller(Entity):
                     tree = Tree(pos,scale)
         except:
             self.new_game()
+        self.toggle_menu()
         
 
     def input(self,key):
@@ -98,13 +121,15 @@ class Controller(Entity):
 
         if key == "l":
             self.load_game()
-
+        
+        if key == "escape":
+            self.toggle_menu()
 
 
 
 
 
 game = Controller()
-game.load_game()
+# game.load_game()
 
 app.run()
