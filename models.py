@@ -3,7 +3,7 @@ from ursina.shaders import lit_with_shadows_shader, basic_lighting_shader
 from settings import*
 import os
 from ursina.prefabs.first_person_controller import FirstPersonController
-
+from direct.actor.Actor import Actor
 
 def get_image_list(path):
     image_names = os.listdir(path)
@@ -110,7 +110,39 @@ class Player(FirstPersonController):
             if self.step_sound.playing:
                 self.step_sound.stop()
 
-       
+class Fox(Entity):
+    def __init__(self,pos,**kwargs):
+        super().__init__(parent=scene,
+                         scale= 0.7,
+                         position = pos,
+                         origin_y = 0,
+                         shader = basic_lighting_shader,
+                         collider = "mesh",
+                           **kwargs)
+             
+        self.actor = Actor("assets/models/minecraft_fox_walking_in_place/scene.gltf")
+        self.actor.reparent_to(self)
+        self.actor.loop("ArmatureAction") 
+        self.dir = Vec3(1,0,1)#напрямок лисиці
+        # self.rotation = self.dir
+        self.rotation_y += 90
+        self.step = 0.2
+
+    def can_move(self,new_pos):
+        # for block in Block.map:
+            hit_info = raycast(new_pos, direction=self.rotation, distance=self.step) 
+            if hit_info.hit:
+                return False
+            else:
+                return True
+
+
+
+    def update(self):
+        new_position = self.position + self.dir * self.step
+        if self.can_move(new_position):
+            self.position = new_position
+
 
 
 

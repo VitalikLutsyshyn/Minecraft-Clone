@@ -9,7 +9,7 @@ import math
 import pickle     
 app = Ursina()#cтвореня гри
 from settings import*
-from models import Tree,Block,Pickaxe,Player,axe
+from models import Tree,Block,Pickaxe,Player,axe,Fox
 from ui import Menu
 
 
@@ -72,6 +72,11 @@ class Controller(Entity):
                 rand_num = random.randint(0,100)
                 if rand_num == 15:
                     tree1 = Tree((x,height+1,z),scale = random.randint(4,7))
+
+                rand_num = random.randint(0,1000)
+                if rand_num == 15:
+                    fox = Fox((x,height+0.5,z))
+
         self.toggle_menu()
 
     def save_game(self): 
