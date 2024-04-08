@@ -125,23 +125,26 @@ class Fox(Entity):
         self.actor.loop("ArmatureAction") 
         self.dir = Vec3(1,0,1)#напрямок лисиці
         # self.rotation = self.dir
-        self.rotation_y += 90
-        self.step = 0.2
+        self.rotation_y += 50
+        self.step = 0.1
 
-    def can_move(self,new_pos):
+    def check_colision(self):
         # for block in Block.map:
-            hit_info = raycast(new_pos, direction=self.rotation, distance=self.step) 
+            origin = self.position + self.up * .5 
+            hit_info = raycast(origin, direction=self.rotation, distance=self.step) 
             if hit_info.hit:
-                return False
-            else:
                 return True
+            else:
+                return False
 
 
 
     def update(self):
-        new_position = self.position + self.dir * self.step
-        if self.can_move(new_position):
-            self.position = new_position
+        self.old_position = self.position
+        self.position = self.position + self.rotation * self.step
+
+        if self.check_colision():
+            self.position = self.old_position
 
 
 

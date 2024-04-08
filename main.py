@@ -1,4 +1,4 @@
-#знайти звуки mp3
+#ЗНАЙТИ БЛОКИ ЩЕ
 from ursina import*
 from ursina.prefabs.sky import Sky
 from ursina.shaders import lit_with_shadows_shader, basic_lighting_shader
@@ -54,14 +54,14 @@ class Controller(Entity):
             destroy(tree)
 
         Block.map.clear()
-        Tree.map.clear()
+        Tree.map.clear()    
 
 
     def new_game(self):
         self.start = True
         self.menu.save_btn.enabled =True
         self.clear_map()
-        noise = PerlinNoise(octaves=4,seed=random.randint(100,10000))
+        noise = PerlinNoise(octaves=3,seed=random.randint(100,10000))
         for x in range(-MAP_SIZE,MAP_SIZE):
             for z in range(-MAP_SIZE,MAP_SIZE):
                 height = noise([x*0.02,z*0.02])

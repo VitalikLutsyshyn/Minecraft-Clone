@@ -34,6 +34,42 @@ class Menu(Entity):
         self.save_btn.enabled = False
 
 
+class InventoryMenu(Entity):
+    def __init__(self,items_textures, width = 6, height = 4,**kwargs):
+        
+        super().__init__( parent= camera.ui,
+                         model = Quad(radius = .015),
+                         texture = "assets/button.png",
+                         texture_scale = (width,height),
+                         scale = (width*.1, height*.1),
+                         origin = (-.5,.5),
+                         position = (-.3,.4),
+                         color = color.hsv(0, 0, .1, .9),        
+                         **kwargs)
+        self.width = width
+        self.height = height
+        self.textures = items_textures
+        self.items = []
+
+
+class Item(Button):
+    def __init__(self,texture,x,y, parent=camera.ui, **kwargs):
+        super().__init__(text= "",
+                         texture = texture,
+                         x = x,
+                         y = y,
+                        parent= parent,
+                        color = "white",
+                        pressed_scale = 0.05,
+                        scale = 0.1,
+                        origin = (-.5,.5),
+                        **kwargs)
+    
+       
+
+
+
+
 if __name__ == '__main__':
     app = Ursina()
     menu = Menu()
